@@ -53,6 +53,19 @@ func (handler *DBHandler) GetConnection() (*gorm.DB, error) {
 	return handler.db, nil
 }
 
+func (handler *DBHandler) CloseDBConnect() error {
+    handler.Lock()
+    defer handler.Unlock()
+
+    if handler.connected {
+        handler.connected = false
+        err :=  handler.db.Close()
+        return err
+    }
+
+    return nil
+}
+
 type DBOptional struct {
 	DriverName   string
 	Timeout      string
