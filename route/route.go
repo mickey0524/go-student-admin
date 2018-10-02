@@ -8,7 +8,7 @@ import (
 func Init() {
 	router := gin.Default()
 
-	router.GET('/stu_info', controller.GetStuInfo)
+	router.GET("/stu_info", controller.GetStuInfo)
 
 	router.Run()
 }
