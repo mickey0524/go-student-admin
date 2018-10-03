@@ -10,5 +10,7 @@ func Init() {
 
 	router.GET("/stu_info", controller.GetStuInfo)
 
+	router.POST("/new", controller.NewStudent)
+
 	router.Run()
 }

@@ -31,3 +31,21 @@ func GetStuInfo(id int64) (stuInfo *Student) {
 	stuInfo = &stu
 	return
 }
+
+func NewStudent(name string, age int8, sex int8) (stuInfo *Student) {
+	conn, err := DBSession.GetConnection()
+	if err != nil {
+		return
+	}
+	stuInfo = &Student{
+		Name: name,
+		Age:  age,
+		Sex:  sex,
+	}
+	conn.Create(stuInfo)
+	return
+}
+
+func (student *Student) TableName() string {
+	return "student_info"
+}
